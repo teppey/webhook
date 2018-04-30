@@ -26,7 +26,7 @@ pipeline {
 
                     sh 'env | sort'
 
-                    if (gitBranchIsMaster) {
+                    if (!gitBranchIsMaster) {
                         error('not master branch')
                     }
 
