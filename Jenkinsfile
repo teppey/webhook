@@ -25,6 +25,14 @@ pipeline {
                     echo "gitBranchIsDevelop: ${gitBranchIsDevelop}"
 
                     sh 'env | sort'
+
+                    if (gitBranchIsMaster) {
+                        error('not master branch')
+                    }
+
+                    if (!(gitTag ==~ /\Av3\.\d+\.\d+\.\d+\z/)) {
+                        error('not found release tag')
+                    }
                 }
             }
         } // stage Check
