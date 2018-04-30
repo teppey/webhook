@@ -23,6 +23,8 @@ pipeline {
 
                     def gitBranchIsDevelop = gitHeadCommit == gitDevelopCommit
                     echo "gitBranchIsDevelop: ${gitBranchIsDevelop}"
+
+                    sh 'env | sort'
                 }
             }
         } // stage Check
