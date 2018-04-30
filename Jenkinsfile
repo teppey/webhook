@@ -26,11 +26,13 @@ pipeline {
 
                     sh 'env | sort'
 
-                    if (!gitBranchIsMaster) {
+                    if (gitBranchIsMaster) {
+                        currentBuild.result = 'ABORTED'
                         error('not master branch')
                     }
 
                     if (!(gitTag ==~ /\Av3\.\d+\.\d+\.\d+\z/)) {
+                        currentBuild.result = 'ABORTED'
                         error('not found release tag')
                     }
                 }
