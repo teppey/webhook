@@ -41,8 +41,19 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Hello world'
+                echo 'Hello, world'
             }
         } // stage Test
-    }
+
+        stage('Deliver') {
+            agent {
+                docker {
+                    image 'python:2-alpine'
+                }
+            }
+            steps {
+                sh 'python -m compileall src'
+            }
+        }
+    } // stage Deliver
 }
