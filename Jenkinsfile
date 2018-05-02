@@ -26,7 +26,7 @@ pipeline {
 
                     sh 'env | sort'
 
-                    if (gitBranchIsMaster) {
+                    if (!gitBranchIsMaster) {
                         currentBuild.result = 'ABORTED'
                         error('not master branch')
                     }
