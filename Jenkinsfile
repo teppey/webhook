@@ -49,6 +49,7 @@ pipeline {
             }
             steps {
                 sh 'python -m compileall src'
+                sh 'find src -path "*.pyc"'
             }
         }
 
