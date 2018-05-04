@@ -35,17 +35,13 @@ pipeline {
                         currentBuild.result = 'ABORTED'
                         error('not found release tag')
                     }
+
+                    env.MY_GIT_TAG = gitTag
                 }
             }
         } // stage Check
 
-        stage('Test') {
-            steps {
-                echo 'Hello, world'
-            }
-        } // stage Test
-
-        stage('Deliver') {
+        stage('Build') {
             agent {
                 docker {
                     image 'python:2-alpine'
@@ -55,5 +51,24 @@ pipeline {
                 sh 'python -m compileall src'
             }
         }
-    } // stage Deliver
+
+        stage('Test') {
+            steps {
+                echo 'run Test'
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                sh 'find src -type f -path "*.pyc"'
+            }
+        }
+
+        stage('Upload') {
+            steps {
+                echo 'Upload'
+            }
+        }
+
+    } // stages
 }
