@@ -72,4 +72,11 @@ pipeline {
         }
 
     } // stages
+
+    post {
+        cleanup {
+            sh 'git reset --hard $GIT_COMMIT'
+            sh 'git clean -fdx'
+        }
+    }
 }
