@@ -63,7 +63,7 @@ pipeline {
             steps {
                 sh 'mkdir $MY_GIT_TAG'
                 sh '''
-                for x in find src -type f -path '*.pyc'; do
+                for x in $(find src -type f -path '*.pyc'); do
                     test -d $(dirname $x) || mkdir -p $(dirname $x)
                     cp $x $(dirname $x)
                 done
