@@ -63,9 +63,10 @@ pipeline {
             steps {
                 sh 'mkdir $MY_GIT_TAG'
                 sh '''
-                for x in $(find src -type f -path '*.pyc'); do
-                    test -d $(dirname $x) || mkdir -p $(dirname $x)
-                    cp $x $(dirname $x)
+                for src in $(find src -type f -path '*.pyc'); do
+                    dest=$MY_GIT_TAG/$src
+                    test -d $(dirname $dest) || mkdir -p $(dirname $dest)
+                    cp $src $dest
                 done
                 '''
                 sh 'ls -lR'
