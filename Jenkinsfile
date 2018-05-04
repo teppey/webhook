@@ -70,7 +70,7 @@ pipeline {
                 done
                 '''
                 sh 'ls -lR'
-                zip env.MY_GIT_TAG
+                zip zipFile: env.MY_GIT_TAG, archive: true
             }
         }
 
