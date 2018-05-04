@@ -50,7 +50,6 @@ pipeline {
             }
             steps {
                 sh 'python -m compileall src'
-                sh 'find src -path "*.pyc"'
             }
         }
 
@@ -62,7 +61,14 @@ pipeline {
 
         stage('Archive') {
             steps {
-                sh 'find src -type f -path "*.pyc"'
+                sh 'mkdir $MY_GIT_TAG'
+                sh '''
+                for x in find src -type f -path "*.pyc; do
+                    test -d $(dirname $x) || mkdir -p $(dirname $x)
+                    cp $x $(dirname $x)
+                done
+                '''
+                sh 'ls -lR'
             }
         }
 
