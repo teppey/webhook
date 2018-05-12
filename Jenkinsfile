@@ -44,7 +44,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'python:2-alpine'
+                    image 'python:2.7.14'
                     reuseNode true
                 }
             }
