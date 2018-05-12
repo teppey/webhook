@@ -76,7 +76,7 @@ pipeline {
 
         stage('Upload') {
             steps {
-                echo 'Upload!'
+                echo 'Upload'
             }
         }
 
