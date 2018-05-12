@@ -3,9 +3,9 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'payload', defaultValue: '', description: 'GitHub Webhook payload')
-    }
+//    parameters {
+//        string(name: 'payload', defaultValue: '', description: 'GitHub Webhook payload')
+//    }
 
     stages {
         stage('Check') {
