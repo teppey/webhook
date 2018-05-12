@@ -2,10 +2,17 @@
 
 pipeline {
     agent any
+
+    parameters {
+        string(name: 'payload', defaultValue: '', description: 'GitHub Webhook payload')
+    }
+
     stages {
         stage('Check') {
             steps {
                 script {
+                    echo "payload: ${params.payload}"
+
                     gitHeadCommit = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
                     echo "gitHeadCommit: ${gitHeadCommit}"
 
